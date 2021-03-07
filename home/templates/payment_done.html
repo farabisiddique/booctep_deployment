@@ -1,0 +1,168 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+
+{% endblock %}
+{% block content %}
+
+	<br>
+	<br>
+	<br>
+	<br>
+   <h1>Payment done successfully. Course is being added to your dashboard</h1>
+   	<br>
+   	<br>
+   	<br>
+   	<br>
+   	<br>
+   	<br>
+
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+
+		
+
+    course_id = "{{courseidtopurchase.0}}"
+    student_id = "{{studentid}}"
+    order_id = "{{order_id}}"
+    console.log(course_id)
+    console.log(student_id)
+
+    $.ajax({
+    	method : "POST",
+    	url : "/student_courses/",
+    	data : {
+    		'course':course_id,
+    		'student':student_id,
+    		'order' : order_id
+    		},
+    		success : function(response){
+    		// if (response == "success"){
+    		// 	swal("Course Added!", {
+    		// 	icon: "success",
+    		// 	button: "Ok",
+    		// 	closeOnClickOutside: false,
+    			// }).then(function() {
+    			// 	location.href = "/courses/"
+    			// });
+    		// 	}
+    		// else{
+
+    		// 	swal("Course Already Added In My Courses!", {
+    		// 	icon: "info",
+    		// 	button: "Ok",
+    		// 	closeOnClickOutside: false,
+    		// 	}).then(function() {
+
+    		// 	});
+
+    		// }
+
+   //  		if (response == "success"){
+	  //   			var
+			// 		    closeInSeconds = 5,
+			// 		    displayText = "Course added. It will be redirected in #1 seconds.",
+			// 		    timer;
+
+			// 		swal({
+			// 		    title: "Course Added!",   
+			// 		    text: displayText.replace(/#1/, closeInSeconds),   
+			// 		    timer: closeInSeconds * 1000,   
+			// 		    showConfirmButton: false 
+			// 		});
+
+			// 		timer = setInterval(function() {
+
+			// 		    closeInSeconds--;
+
+			// 		    if (closeInSeconds < 0) {
+
+			// 		        clearInterval(timer).then(function() {
+			//     				location.href = "/courses/"
+			//     			});
+			// 		    }
+
+			// 		    $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
+
+			// 		}, 1000);
+			// }
+			if (response == "success"){
+
+
+
+					let timerInterval
+
+					Swal.fire({
+					  title: 'Course Added!',
+					  html:
+					    'You will be redirected in <strong></strong> seconds.<br/><br/>',
+					  timer: 5000,
+					  willOpen: () => {
+					    const content = Swal.getContent()
+					    const $ = content.querySelector.bind(content)
+
+					    timerInterval = setInterval(() => {
+					      Swal.getContent().querySelector('strong')
+					        .textContent = (Swal.getTimerLeft() / 1000)
+					          .toFixed(0)
+					    }, 100)
+					  },
+					  willClose: () => {
+					    clearInterval(timerInterval)
+					  }
+					}).then(function() {
+	    				location.href = "/courses/"
+	    			});
+
+
+				
+
+
+			}
+    		else{
+
+    			let timerInterval
+
+					Swal.fire({
+					  title: 'Course Already Added!',
+					  html:
+					    'You will be redirected in <strong></strong> seconds.<br/><br/>',
+					  timer: 5000,
+					  willOpen: () => {
+					    const content = Swal.getContent()
+					    const $ = content.querySelector.bind(content)
+
+					    timerInterval = setInterval(() => {
+					      Swal.getContent().querySelector('strong')
+					        .textContent = (Swal.getTimerLeft() / 1000)
+					          .toFixed(0)
+					    }, 100)
+					  },
+					  willClose: () => {
+					    clearInterval(timerInterval)
+					  }
+					}).then(function() {
+	    				location.href = "/courses/"
+	    			});
+
+    		}
+
+    	}
+    });
+
+
+
+
+
+
+
+
+
+
+
+	});
+	
+
+</script>
+{% endblock %}

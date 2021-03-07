@@ -1,0 +1,421 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<style>
+    .loading::after {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+        background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, 0.2)), to(transparent));
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        /* Adding animation */
+        animation: loading 1s infinite;
+    }
+    /* Loading Animation */
+
+    @keyframes loading {
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+
+
+    .dancin-bc{
+    background: white !important;
+    height: 100%;
+    width: 100%;
+
+    }
+    .dancing-lao {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.dancing-lao:after {
+  display: block;
+  width: 150px;
+  height: 2px;
+  margin-top: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background: rgb(43, 148, 209);
+  content: "";
+  -webkit-animation: 1s border infinite;
+          animation: 1s border infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+          animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+}
+.dancing-lao .left-dots {
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+}
+.dancing-lao .right-dots {
+  position: absolute;
+  bottom: 20%;
+  right: 20%;
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+.dancing-lao .dot {
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(43, 148, 209);
+  opacity: 0;
+}
+.dancing-lao .dot-1 {
+  -webkit-animation: 1s dot infinite;
+          animation: 1s dot infinite;
+  -webkit-animation-delay: .5s;
+          animation-delay: .5s;
+}
+.dancing-lao .dot-2 {
+  -webkit-animation: 1s dot-2 infinite;
+          animation: 1s dot-2 infinite;
+  -webkit-animation-delay: .5s;
+          animation-delay: .5s;
+}
+.dancing-lao .circle-dot {
+  display: inline-block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgb(43, 148, 209);
+  -webkit-animation: 1s cirle-dot infinite;
+          animation: 1s cirle-dot infinite;
+  -webkit-animation-delay: .5s;
+          animation-delay: .5s;
+  opacity: 0;
+}
+.dancing-lao img {
+  display: block;
+  margin: auto;
+  width: 90px;
+  height: 80px;
+  margin-bottom: 20px;
+  -webkit-animation: 1s dance infinite;
+          animation: 1s dance infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+          animation-timing-function: cubic-bezier(0.92, 0.18, 0.04, 0.92);
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+
+@-webkit-keyframes dance {
+  0% {
+    -webkit-transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+            transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+  }
+  50% {
+    -webkit-transform: translate3d(0, 8px, 0) scaleY(0.85);
+            transform: translate3d(0, 8px, 0) scaleY(0.85);
+  }
+  100% {
+    -webkit-transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+            transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+  }
+}
+
+@keyframes dance {
+  0% {
+    -webkit-transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+            transform: translate3d(-10px, -100px, 0) rotate(-15deg) scaleY(1.1);
+  }
+  50% {
+    -webkit-transform: translate3d(0, 8px, 0) scaleY(0.85);
+            transform: translate3d(0, 8px, 0) scaleY(0.85);
+  }
+  100% {
+    -webkit-transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+            transform: translate3d(10px, -100px, 0) rotate(15deg) scaleY(1.1);
+  }
+}
+@-webkit-keyframes border {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    -webkit-transform: scaleX(0.6);
+            transform: scaleX(0.6);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    opacity: 0.5;
+  }
+}
+@keyframes border {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    -webkit-transform: scaleX(0.6);
+            transform: scaleX(0.6);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    opacity: 0.5;
+  }
+}
+@-webkit-keyframes dot {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  50% {
+    -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+    opacity: .8;
+  }
+  100% {
+    -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+    opacity: 0;
+  }
+}
+@keyframes dot {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  50% {
+    -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+    opacity: .8;
+  }
+  100% {
+    -webkit-transform: scale(1) translate3d(-50px, -70px, 0);
+            transform: scale(1) translate3d(-50px, -70px, 0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes dot-2 {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  70% {
+    -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+    opacity: .8;
+  }
+  100% {
+    -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+    opacity: 0;
+  }
+}
+@keyframes dot-2 {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  70% {
+    -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+    opacity: .8;
+  }
+  100% {
+    -webkit-transform: scale(0.7) translate3d(-50px, -50px, 0);
+            transform: scale(0.7) translate3d(-50px, -50px, 0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes cirle-dot {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  80% {
+    -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+    opacity: .8;
+  }
+  100% {
+    -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+    opacity: 0;
+  }
+}
+@keyframes cirle-dot {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  80% {
+    -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+    opacity: .8;
+  }
+  100% {
+    -webkit-transform: scale(1) translate3d(-80px, -40px, 0);
+            transform: scale(1) translate3d(-80px, -40px, 0);
+    opacity: 0;
+  }
+}
+
+
+    .accordion__menu{
+       border: 0.5px solid #dbdbdb;
+       background: white !important
+    }
+
+    .card-terms{
+      background-color: white !important;
+        animation-play-state: paused !important;
+    }
+
+    .card-terms-dark{
+      background-color: grey !important;
+        animation-play-state: paused !important;
+    }
+
+</style>
+
+
+    <div class="products-navigation" style="display: none;">
+    </div>
+
+
+
+
+
+
+
+
+    <div class="terms" >
+
+
+
+
+
+            <!-- Brands -->
+            <div id="brands-tab" class="store-tab-pane is-active">
+                   <!-- Timeline -->
+
+                   <section class="hero is-small is-bold hero-term">
+                    <div class="hero-body">
+                      <div class="container">
+
+                        <h1 class="booctep-1" data-shadow='Booctep'>Terms</h1>
+
+
+
+
+                        <h2 class="booctep-h2">Terms of use and condition</h2>
+
+                      </div>
+                    </div>
+                  </section>
+
+
+
+
+
+
+
+
+                  <div class="terms-page " id="terms">
+                    <div class="container">
+
+                        <div class="columns" >
+                            <div class="column is-3 ">
+
+                                <div class="card-terms card-terms card-terms-v">
+                                    <a href="#simple-buttons" style="margin-bottom: 20px;
+                                    transition: all 2s ease-in-out;">Accountxs</a><br>
+                                    <a href="#simple">Sign up</a><br>
+                                    <a href="#hi">Payments</a><br>
+                                    <a href="#by">Courses</a><br>
+                                    <a href="#simple">Sign up</a><br>
+                                    <a href="#hi">Payments</a><br>
+                                    <a href="#by">Courses</a><br>
+                                    <a href="#simple">Sign up</a><br>
+                                    <a href="#hi">Payments</a><br>
+                                    <a href="#by">Courses</a>
+                                </div>
+                            </div>
+                            <div class="column is-9 ">
+                                <div class="card-terms card-terms card-terms-n">
+                                <div id="simple-buttons" class="element-block ">
+                                    <div class="categories-header">
+                                        <h2>Payments</h2>
+                                    </div>
+                                    <p>A non exhaustive list of UI elements that you can use when building your project with Friendkit. More will be added as new theme updates are released. Friendkit being a <a href="https://bulma.io" target="_blank">Bulma.io</a> based theme, you can use components directly from Bulma. You can read the <a href="https://bulma.io/documentation" target="_blank">documentation</a> if you're not familiar with it.</p>
+                                </div>
+                                <div id="simple" class="element-block">
+                                    <div class="categories-header">
+                                        <h2>Accounts</h2>
+                                    </div>
+                                    <p>A non exhaustive list of UI elements that you can use when building your project with Friendkit. More will be added as new theme updates are released. Friendkit being a <a href="https://bulma.io" target="_blank">Bulma.io</a> based theme, you can use components directly from Bulma. You can read the <a href="https://bulma.io/documentation" target="_blank">documentation</a> if you're not familiar with it.</p>
+                                </div>
+                                <div id="hi" class="element-block">
+                                    <div class="categories-header">
+                                        <h2>Sympol</h2>
+                                    </div>
+                                    <p>A non exhaustive list of UI elements that you can use when building your project with Friendkit. More will be added as new theme updates are released. Friendkit being a <a href="https://bulma.io" target="_blank">Bulma.io</a> based theme, you can use components directly from Bulma. You can read the <a href="https://bulma.io/documentation" target="_blank">documentation</a> if you're not familiar with it.</p>
+                                </div>
+
+                                <div id="by" class="element-block">
+                                    <div class="categories-header">
+                                        <h2>Courses</h2>
+                                    </div>
+                                    <p>A non exhaustive list of UI elements that you can use when building your project with Friendkit. More will be added as new theme updates are released. Friendkit being a <a href="https://bulma.io" target="_blank">Bulma.io</a> based theme, you can use components directly from Bulma. You can read the <a href="https://bulma.io/documentation" target="_blank">documentation</a> if you're not familiar with it.</p>
+                                </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                      </div>
+                  </div>
+
+
+        </div>
+
+    </div>
+
+
+    </div>
+    {%  endblock %}

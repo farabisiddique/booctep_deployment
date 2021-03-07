@@ -1,0 +1,88 @@
+{% extends "student/base.html" %}
+
+{% block title %}
+Privacy
+{% endblock %}
+
+{% block headercontent %}
+    {% with title="Privacy" %}
+    {% include "./layout/header.html" %}
+    {% endwith %}
+{% endblock %}
+{% block content %}
+    {% load static %}
+            <div class=" page__container " style="margin-top: 15px;margin-bottom: 25px;">
+
+                <div class="col-lg-8 d-flex align-items-center" style="">
+                </div>
+                
+                <div class="col-md-7 pt-3">
+                    
+                    <div class="form-group" style="margin-bottom: 20px !important">
+                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input style="font-size:5px !important;margin-top:-10px !important" checked="" type="checkbox" id="changemode" class="custom-control-input toggler" style="font-size: x-small;">
+
+                                <label class="custom-control-label" for="changemode">Yes</label>
+                        </div>
+                            <b style="color:black; margin-top:3px !important">Set the default mode to <span class="getmodename"></span>.</b>
+                    </div>
+
+                   
+                    <div class="form-group" style="margin-bottom: 20px !important">
+                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input style="font-size:5px !important;margin-top:-10px !important" checked="" type="checkbox" id="changelang" class="custom-control-input" style="font-size: x-small;">
+                                <label class="custom-control-label" for="changelang">Yes</label>
+                            </div>
+                            <b style="color:black; margin-top:3px !important">Set the default Language ( Arabic ).</b><br />
+                            <small style="color:blue;margin-top:5px;margin-left: 55px">the certificate will be with the chosen language.</small>
+                    </div>
+
+                    <!-- <div class="form-group" style="margin-bottom: 20px !important">
+
+                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input style="font-size:5px !important;margin-top:-10px !important" checked="" type="checkbox" id="subscribe" class="custom-control-input" style="font-size: x-small;">
+                                <label class="custom-control-label" for="subscribe">Yes</label>
+                            </div>
+                            <b style="margin-top:3px !important">Set the default  ( Light ).</b>
+                    </div> -->
+
+<!--                     <div class="form-group" style="margin-bottom: 20px !important">
+                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input style="font-size:5px !important;margin-top:-10px !important" checked="" type="checkbox" id="subscribe" class="custom-control-input" style="font-size: x-small;">
+                                <label class="custom-control-label" for="subscribe">Yes</label>
+                            </div>
+                            <b style="margin-top:3px !important">Make the default mode ( Light ).</b>
+                    </div> -->
+
+<!--                     <div class="form-group" style="margin-bottom: 30px !important">
+                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                <input style="font-size:5px !important;margin-top:-10px !important" checked="" type="checkbox" id="subscribe" class="custom-control-input" style="font-size: x-small;">
+                                <label class="custom-control-label" for="subscribe">Yes</label>
+                            </div>
+                            <b style="margin-top:3px !important">Make the default mode ( Light ).</b>
+                    </div> -->
+
+
+
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+
+
+        </div>
+    <script>
+    function deleteAccount() {
+        id = '{{ user_id }}'
+        url = '/deleteAccount/'
+
+        $.post(url,{id:id},function(res){
+            swal("deleted successfully!", {
+            icon: "success",
+            button: "Ok",
+            closeOnClickOutside: false,
+            }).then(function() {
+                document.location.href = '/logout/';
+            });
+        })
+    }
+    </script>
+{% endblock %}
